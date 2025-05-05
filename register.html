@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <style>
+       
+        #form_container{
+            margin-left: 450px;
+            text-align: left;
+            display: inline-block;
+            padding: 30px;
+            background-color: whitesmoke;
+            box-shadow: 0px 0px 10px; 
+            border-radius: 12px;
+        }
+        #output{
+            margin-left: 520px;
+            display: none;
+
+        }
+        button{
+            padding: 5px 10px;
+            background-color: deepskyblue;
+            border-radius: 6px;
+        }
+        button:hover{
+            background-color: lawngreen;
+        }
+    </style>
+    <script>
+         function validateForm(event) {
+            event.preventDefault();
+
+            let id = document.getElementById("input1").value;
+            let name = document.getElementById("input2").value;
+            let email = document.getElementById("input3").value;
+            let department = document.getElementById("input4").value;
+            let date = document.getElementById("input5").value;
+            let gender = document.querySelector('input[name="gender"]:checked');
+            let empType = document.getElementById("input6").checked;
+
+            let idError = document.getElementById("idError");
+            let nameError = document.getElementById("nameError");
+            let emailError = document.getElementById("emailError");
+            let deptError = document.getElementById("deptError");
+            let dateError = document.getElementById("dateError");
+            let genderError = document.getElementById("genderError");
+            let empTypeError = document.getElementById("empTypeError");
+
+            idError.innerText = "";
+            nameError.innerText = "";
+            emailError.innerText = "";
+            deptError.innerText = "";
+            dateError.innerText = "";
+            genderError.innerText = "";
+            empTypeError.innerText = "";
+
+
+            let isValid = true;
+
+            let idPattern = /^EMP\d{3}$/;
+            let namePattern = /^[A-Za-z\s]+$/;
+            let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+            if (!idPattern.test(id)) 
+            {
+                idError.innerText = "* Employee ID must start with 'EMP' followed by 3 digits.";
+                isValid = false;
+            }
+
+            if (!namePattern.test(name)) 
+            {
+                nameError.innerText = "* Name should contain only letters and spaces.";
+                isValid = false;
+            }
+            if (!emailPattern.test(email)) 
+            {
+                emailError.innerText = "* Enter a valid email address.";
+                isValid = false;
+            }
+            if (department === "") 
+            {
+                deptError.innerText = "* Please select a department.";
+                isValid = false;
+            }
+            if (date === "") 
+            {
+                dateError.innerText = "* Joining date is required.";
+                isValid = false;
+            }
+            if (!gender) 
+            {
+                genderError.innerText = "* Please select a gender.";
+                isValid = false;
+            }
+            if (!empType) 
+            {
+                empTypeError.innerText = "* Please select employment type";
+                isValid = false;
+            }
+
+            if (isValid) 
+            {
+                alert("Registration Complete");
+
+                document.getElementById("output").style.display = "block";
+                document.getElementById("output").innerHTML =
+                    "<h3>Employee Information</h3>" +
+                    "<p>Employee ID: " + id + "</p>" +
+                    "<p>Name: " + name + "</p>" +
+                    "<p>Email: " + email + "</p>" +
+                    "<p>Department: " + department + "</p>" +
+                    "<p>Joining Date: " + date + "</p>" +
+                    "<p>Gender: " + gender.value + "</p>" +
+                    "<p>Employee Type: Full-Time</p>";
+            }
+
+        }
+
+    </script>
+</head>
+<body>
+    <h1 style="margin-left:430px;">Employee Registration Form</h1>
+        
+    <div id="form_container">
+        
+        <form id="Form" onsubmit="validateForm(event)">
+            <table>
+                <tr>
+                    <td>Employee ID:</td>
+                    <td><input type="text" id="input1" name="id"></td>
+                    <td><span id="idError" style="color: red;"></span></td>
+                </tr>
+                <tr>
+                   <td>Full Name:</td>
+                   <td><input type="text" id="input2" name="name"></td>
+                   <td><span id="nameError" style="color: red;"></span></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="text" id="input3" name="email"></td>
+                    <td><span id="emailError" style="color: red;"></span></td>
+                </tr>
+                <tr>
+                    <td>Department:</td>
+                    <td>
+                      <select id="input4" name="department">
+                        <option value=""></option>
+                        <option value="HR">HR</option>
+                        <option value="Sales">Sales</option>
+                        <option value="IT">IT</option>
+                        <option value="Marketing">Marketing</option>
+                      </select>
+                    </td>
+                    <td><span id="deptError" style="color: red;"></span></td>
+                </tr>
+                <tr>
+                    <td>Joining Date:</td>
+                    <td><input type="date" id="input5" name="joinDate"></td>
+                    <td><span id="dateError" style="color: red;"></span></td>
+                </tr>
+                <tr>
+                    <td>Gender:</td>
+                    <td>
+                      <input type="radio" name="gender" value="Male"> Male
+                      <input type="radio" name="gender" value="Female"> Female
+                    </td>
+                    <td><span id="genderError" style="color: red;" ></span></td>
+                  </tr>
+                  <tr>
+                    <td>Employment Type:</td>
+                    <td>
+                      <input type="checkbox" id="input6" name="employmentType" value="Full-Time"> Full-Time
+                    </td>
+                    <td><span id="empTypeError" style="color: red;"></span></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td><button type="submit">Submit</button>
+                    <button type="reset">Reset</button></td>
+                  </tr>
+            </table>
+        </form>
+    </div>
+    <div id="output"></div>
+
+</body>
+</html>
