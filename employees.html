@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee List</title>
+    <style>
+        table{
+            margin-left: 180px;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        th, td {
+            border: 1px solid;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: beige;
+        }
+        button{
+            padding: 5px 10px;
+            background-color: deepskyblue;
+            border-radius: 6px;
+        }
+        button:hover{
+            background-color: lawngreen;
+        }
+        #editForm {
+            display: none;
+            padding: 20px;
+        }
+    </style>
+    <script>
+        function deleteRow(btn) 
+    {
+        btn.closest("tr")?.remove();
+    }
+
+    function editRow(button) 
+    {
+            document.getElementById("editForm").style.display = "block";
+    }
+
+    </script>
+</head>
+<body>
+   <h2 style="margin-left: 525px;">Employee List</h2>
+   <table style="border: 1;">
+    <tr>
+        <th>ID</th><th>Name</th><th>Email</th><th>Department</th><th>Joining Date</th><th>Gender</th><th>Employee Type</th><th></th>
+    </tr>
+    <tr>
+        <td>EMP001</td><td>Shahed Ali</td><td>shahed@gmail.com</td><td>IT</td><td>2024-03-22</td><td>Male</td><td>Full-Time</td>
+        <td>
+            <button id="edit" onclick="editRow(this)">Edit</button>
+            <button id="delete" onclick="deleteRow(this)">Delete</button>
+        </td>
+    </tr>
+    <tr>
+        <td>EMP002</td><td>MD. Makhon</td><td>makhon@gmail.com</td><td>Sales</td><td>2024-06-12</td><td>Male</td><td>Full-Time</td>
+        <td>
+            <button id="edit" onclick="editRow(this)">Edit</button>
+            <button id="delete" onclick="deleteRow(this)">Delete</button>
+        </td>
+    </tr>
+    <tr>
+        <td>EMP003</td><td>SM Boltu</td><td>boltu@gmail.com</td><td>Marketing</td><td>2023-11-05</td><td>Male</td><td>Full-Time</td>
+        <td>
+            <button id="edit" onclick="editRow(this)">Edit</button>
+            <button id="delete" onclick="deleteRow(this)">Delete</button>
+        </td>
+    </tr>
+    <tr>
+        <td>EMP004</td><td>Momun Munsi</td><td>mamun@gmail.com</td><td>HR</td><td>2024-07-30</td><td>Male</td><td>Full-Time</td>
+        <td>
+            <button id="edit" onclick="editRow(this)">Edit</button>
+            <button id="delete" onclick="deleteRow(this)">Delete</button>
+        </td>
+    </tr>
+    <tr>
+        <td>EMP005</td><td>Sami Molla</td><td>sami@gmail.com</td><td>IT</td><td>2023-09-28</td><td>Male</td><td>Full-Time</td>
+        <td>
+            <button id="edit" onclick="editRow(this)">Edit</button>
+            <button id="delete" onclick="deleteRow(this)">Delete</button>
+        </td>
+    </tr>
+   </table> 
+
+<div id="editForm">
+    <h3>Edit Employee</h3>
+    <input type="text" id="editID" placeholder="ID">
+    <input type="text" id="editName" placeholder="Name">
+    <input type="email" id="editEmail" placeholder="Email">
+
+    <select id="editDept">
+        <option value="">Select Department</option>
+        <option value="HR">HR</option>
+        <option value="Sales">Sales</option>
+        <option value="IT">IT</option>
+        <option value="Marketing">Marketing</option>
+    </select>
+
+    <input type="date" id="editDate">
+    Gender:
+    <label><input type="radio" name="editGender" value="Male"> Male</label>
+    <label><input type="radio" name="editGender" value="Female"> Female</label>
+    Employee Type:
+    <label><input type="checkbox" name="editType" value="Full-Time"> Full-Time</label>
+    <button>Save</button>
+</div>
+
+</body>
+</html>
